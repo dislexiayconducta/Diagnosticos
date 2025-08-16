@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 if DEBUG:
-    ALLOWED_HOSTS = ["localhost", "4193c2a429c0.ngrok-free.app"]
+    ALLOWED_HOSTS = ["localhost", "a07779bc8c43.ngrok-free.app"]
 else:
     ALLOWED_HOSTS = [
         "backcend-n9te.onrender.com",
@@ -54,7 +54,7 @@ THIRD_PARTY_APPS = [
 ]
 
 CUSTOM_APPS = [
-    # "dyc_tally_tests",
+    "dyc_tally_tests",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
