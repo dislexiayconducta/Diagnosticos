@@ -5,6 +5,8 @@ from django.views.decorators.http import require_POST
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from .models import TestType, TestQuestion, TestOption, TestResponse, TestAttempt
+from .send_test_response_email import EmailTestResponse
+from .utils import get_template_type
 
 data_section = {}
 fields_section = []
@@ -67,8 +69,8 @@ WEIGHING_MAP = {
     "Preescolar": 0,
     "Primaria": 0,
     "Secundaria": 0,
-    "Nivel medio": 0,
-    "Superior": 0,
+    "Terciario": 0,
+    "Universitario": 0,
 }
 
 
@@ -167,8 +169,8 @@ def save_test_responses(fields_section, options_section, attempt: TestAttempt):
                     "Preescolar",
                     "Primaria",
                     "Secundaria",
-                    "Nivel medio",
-                    "Superior",
+                    "Terciario",
+                    "Universitario",
                 ]:
                     print("OPTION_OBJ -> ", option_obj.name_text)
                     education = option_obj.name_text
@@ -188,12 +190,25 @@ def dyc_test_tally_view(request):
     # Sección de datos del Payload de Tally
     payload_from_tally.get("data", {})
     test_type = get_type_of_dyc_test(data_section)
+    print("PLANTILLA SELECCIONADA -> ", test_type.template_asigned)
     fill_test_question_model(fields_section, test_type)
     populate_test_options(fields_section, options_section)
     test_aplicado = save_test_attempt(personal_data)
     save_test_responses(fields_section, options_section, test_aplicado)
-    print("TEST aplicado --> ", test_aplicado)
-    # populate_test_responses(payload_from_tally)
+    print("TEST APLICADO -> ", test_aplicado.total_score)
+    print("TEST TYPE -> ", test_type)
+    """
+    Obtener los items necesarios para el envío de correos:
+     test_type se encuentra el tipo de plantilla.
+     
+     en la variable 'test_aplicado se encuentra el set the items:
+      total_score,
+     
+    """
+    EmailTestResponse.send_test_response_email(
+        test_type.template_asigned, test_aplicado.email, test_aplicado.total_score
+    )
+
     if test_type:
         print("FORM NAME ", test_type.form_name)
         return JsonResponse({"Ok": "Payload recibido correctamente"}, status=200)
