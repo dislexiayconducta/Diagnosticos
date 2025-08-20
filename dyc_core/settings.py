@@ -55,6 +55,7 @@ THIRD_PARTY_APPS = [
 
 CUSTOM_APPS = [
     "dyc_tally_tests",
+    "dislexiayconducta",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + CUSTOM_APPS

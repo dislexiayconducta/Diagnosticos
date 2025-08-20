@@ -1,0 +1,101 @@
+<!-- applications/play_attention/templates/welcome.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Bienvenidos a Dislexia y Conducta!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        header {
+            background-color: #6200ea;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        main {
+            padding: 20px;
+        }
+        h2 {
+            font-size: 1.75rem;
+            color: #6200ea;
+        }
+        p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        a {
+            color: #6200ea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .links-list {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+        .links-list li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .links-list li:hover {
+            background-color: #f1f1f1;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.875rem;
+            color: #777;
+        }
+        footer a {
+            color: #6200ea;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🎮 Benvenidos a Dislexia y Conducta!</h1>
+</header>
+
+<main>
+    <section>
+        <p>Benvenidos a la aplicación de dislexia y conducta! Explore our services and navigate through the app's features. You can also visit the API documentation for more details.</p>
+        
+        <h2>Explore the App Endpoints:</h2>
+
+        <ul class="links-list">
+            <li><a href="/send-email/">Enviar correos a leads</a></li>
+            <li><a href="/docs/">Swagger Documentation</a></li>
+            <li><a href="/admin/">Admin Panel</a></li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>Powered by <a href="https://yourwebsite.com">Dislexiayconducta</a> | &copy; 2025 Dislexia y Conducta</p>
+</footer>
+
+</body>
+</html>
