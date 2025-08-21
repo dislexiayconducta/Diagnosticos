@@ -28,7 +28,7 @@ if DEBUG:
     ALLOWED_HOSTS = ["localhost", "5f1b3cebe678.ngrok-free.app"]
 else:
     ALLOWED_HOSTS = [
-        "backcend-n9te.onrender.com",
+        "diagnosticos.onrender.com",
         "dislexiayconducta.com",
         "api.dislexiayconducta.com",
     ]
