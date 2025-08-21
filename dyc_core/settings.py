@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 if DEBUG:
-    ALLOWED_HOSTS = ["localhost", "0a54b13de3fc.ngrok-free.app"]
+    ALLOWED_HOSTS = ["localhost", "5f1b3cebe678.ngrok-free.app"]
 else:
     ALLOWED_HOSTS = [
         "backcend-n9te.onrender.com",
@@ -87,7 +87,7 @@ else:  # Production
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
     ]
 
-EMAIL_HOST_USER = "soporte@playattentionargentina.com"
+EMAIL_HOST_USER = "consulta@dislexiayconducta.com"
 # ✅ correcto
 CSRF_COOKIE_SAMESITE = "Lax"
 CSRF_COOKIE_SECURE = True
@@ -101,18 +101,18 @@ CORS_ALLOWED_ORIGINS = (
     "http://127.0.0.1:8000",
     "http://localhost:3000",
     "https://backcend-n9te.onrender.com",
-    "https://api.playattentionargentina.com",
-    "https://playattentionargentina.com",
+    "https://api.dislexiayconducta.com",
+    "https://dislexiayconducta.com",
     # Example: React app on localhost
 )
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https://.*\.playattentionargentina\.app$",
+    r"^https://.*\.dislexiayconducta\.app$",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://api.playattentionargentina.com",
-    "https://playattentionargentina.com",
+    "https://api.dislexiayconducta.com",
+    "https://dislexiayconducta.com",
 ]
 
 
