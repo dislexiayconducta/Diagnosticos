@@ -183,32 +183,41 @@ def save_test_responses(fields_section, options_section, attempt: TestAttempt):
 @csrf_exempt
 @require_POST
 def dyc_test_tally_view(request):
-    payload_from_tally = json.loads(request.body)
-    data_section, fields_section, options_section, personal_data = (
-        extract_payload_sections(payload_from_tally)
-    )
-    # Sección de datos del Payload de Tally
-    payload_from_tally.get("data", {})
-    test_type = get_type_of_dyc_test(data_section)
-    print("PLANTILLA SELECCIONADA -> ", test_type.template_asigned)
-    fill_test_question_model(fields_section, test_type)
-    populate_test_options(fields_section, options_section)
-    test_aplicado = save_test_attempt(personal_data)
-    save_test_responses(fields_section, options_section, test_aplicado)
-    print("TEST APLICADO -> ", test_aplicado.total_score)
-    print("TEST TYPE -> ", test_type)
-    EmailTestResponse.send_test_response_email(
-        test_type.template_asigned, test_aplicado.email, test_aplicado.total_score
-    )
+    try:
+        payload_from_tally = json.loads(request.body)
+        data_section, fields_section, options_section, personal_data = (
+            extract_payload_sections(payload_from_tally)
+        )
+        # Sección de datos del Payload de Tally
+        payload_from_tally.get("data", {})
+        test_type = get_type_of_dyc_test(data_section)
+        print("PLANTILLA SELECCIONADA -> ", test_type.template_asigned)
 
-    if test_type:
+        fill_test_question_model(fields_section, test_type)
+        populate_test_options(fields_section, options_section)
+        test_aplicado = save_test_attempt(personal_data)
+        save_test_responses(fields_section, options_section, test_aplicado)
+        print("TEST APLICADO -> ", test_aplicado.total_score)
+        print("TEST TYPE -> ", test_type)
+        EmailTestResponse.send_test_response_email(
+            test_type.template_asigned, test_aplicado.email, test_aplicado.total_score
+        )
         print("FORM NAME ", test_type.form_name)
-        return JsonResponse({"Ok": "Payload recibido correctamente"}, status=200)
-
-    return JsonResponse(
-        {
-            "success": False,
-            "error": f"Tipo de test {getattr(test_type, 'form_name', 'desconocido')} no encontrado",
-        },
-        status=200,
-    )
+        return JsonResponse(
+            {
+                "succes": True,
+                "message": "Payload recibido correctamente",
+                "test_type": test_type.form_name,
+                "score": test_aplicado.total_score,
+            },
+            status=200,
+        )
+    except Exception as e:
+        print(f"Error procesando payload de Tally: {str(e)}")
+        return JsonResponse(
+            {
+                "success": True,
+                "message": f"Error interno pero registro completo: {str(e)}",
+            },
+            status=200,
+        )

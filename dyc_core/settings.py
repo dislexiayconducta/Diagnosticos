@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 if DEBUG:
-    ALLOWED_HOSTS = ["localhost", "5f1b3cebe678.ngrok-free.app"]
+    ALLOWED_HOSTS = ["localhost", "6ead1a25530f.ngrok-free.app"]
 else:
     ALLOWED_HOSTS = [
         "diagnosticos.onrender.com",
