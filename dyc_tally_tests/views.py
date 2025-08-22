@@ -193,8 +193,8 @@ def dyc_test_tally_view(request):
         test_type = get_type_of_dyc_test(data_section)
         print("PLANTILLA SELECCIONADA -> ", test_type.template_asigned)
 
-        fill_test_question_model(fields_section, test_type)
-        populate_test_options(fields_section, options_section)
+        # fill_test_question_model(fields_section, test_type)
+        # populate_test_options(fields_section, options_section)
         test_aplicado = save_test_attempt(personal_data)
         save_test_responses(fields_section, options_section, test_aplicado)
         print("TEST APLICADO -> ", test_aplicado.total_score)
