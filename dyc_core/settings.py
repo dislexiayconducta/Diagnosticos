@@ -30,7 +30,7 @@ else:
     ALLOWED_HOSTS = [
         "diagnosticos.onrender.com",
         "dislexiayconducta.com",
-        "api.dislexiayconducta.com",
+        "consultas.dislexiayconducta.com",
     ]
 
 APPEND_SLASH = True
