@@ -214,5 +214,9 @@ def dyc_test_tally_view(request):
         return JsonResponse({"Ok": "Payload recibido correctamente"}, status=200)
 
     return JsonResponse(
-        {"error": f"Tipo de test {test_type.form_name} no encontrado"}, status=404
+        {
+            "success": False,
+            "error": f"Tipo de test {getattr(test_type, 'form_name', 'desconocido')} no encontrado",
+        },
+        status=200,
     )
