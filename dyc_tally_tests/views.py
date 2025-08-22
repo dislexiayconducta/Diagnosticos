@@ -197,14 +197,6 @@ def dyc_test_tally_view(request):
     save_test_responses(fields_section, options_section, test_aplicado)
     print("TEST APLICADO -> ", test_aplicado.total_score)
     print("TEST TYPE -> ", test_type)
-    """
-    Obtener los items necesarios para el envío de correos:
-     test_type se encuentra el tipo de plantilla.
-     
-     en la variable 'test_aplicado se encuentra el set the items:
-      total_score,
-     
-    """
     EmailTestResponse.send_test_response_email(
         test_type.template_asigned, test_aplicado.email, test_aplicado.total_score
     )
